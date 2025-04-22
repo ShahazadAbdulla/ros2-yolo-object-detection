@@ -1,0 +1,22 @@
+{
+  "name": "mobile_sensor",
+  "version": "0.0.0",
+  "description": "TODO: Package description",
+  "keywords": [],
+  "author": "",
+  "license": "TODO: License declaration",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "generate-ros-messages": "node_modules/.bin/generate-ros-messages"
+  },
+  "dependencies": {
+    "rclnodejs": "^0.32.4",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
+    "path": "^0.12.7",
+    "ws": "^8.18.1"
+  }
+}

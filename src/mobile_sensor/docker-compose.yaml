@@ -1,0 +1,26 @@
+services:
+  mobile_sensor_bridge:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: mobile_sensor_bridge
+    restart: unless-stopped
+    volumes:
+      - ./:/ros2_ws/src/mobile_sensor
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority
+    # network_mode: host  # Comment out host network mode
+    # Use bridge network (default) with explicit port mapping
+    ports:
+      - "4000:4000"  # Web interface
+      # Add additional ports as needed, for example:
+      # - "9090:9090"  # For rosbridge if you're using it
+      # - "11311:11311"  # For ROS master if needed
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    privileged: true
+    # Command to run when container starts
+    command: ros2 launch mobile_sensor mobile_sensors.launch.py
+    # For development, you might want to use a shell instead:
+    # command: bash
